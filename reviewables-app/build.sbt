@@ -14,3 +14,9 @@ libraryDependencies ++= Seq(
 )
 
 EclipseKeys.createSrc := EclipseCreateSrc.All
+
+libraryDependencies += "org.neo4j" % "neo4j-jdbc" % "2.1.4"
+
+resolvers += "neo4j" at "http://m2.neo4j.org/service/local/repositories/releases/content"
+
+fork in run := false
