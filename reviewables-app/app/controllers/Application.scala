@@ -13,13 +13,9 @@ object Application extends Controller {
     val statement = con.createStatement()
     val rs = statement.executeQuery("MATCH (arnold {name:'Arnold Schwarzenegger'})-[*1..4]-(related) RETURN DISTINCT related.name")
     val sb = new StringBuilder()
-    if (rs.next() != null){
-      do {
-        val s = rs.next().toString()
-        sb.append(s + System.getProperty("line.separator"))
-        
-      } while (rs.next())
-  }
-    Ok(views.html.index("Searching nodes related to Arnold Schwarzenegger: " + rs.toString())) 
+    while(rs.next()){
+          sb.append(rs.getString("related.name") + ",");
+        }
+    Ok(views.html.index("Hello Arnold Schwarzenegger.  You are related to: " + sb.toString())) 
   }
 }
